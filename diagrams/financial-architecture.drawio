@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 OPR/127.0.0.0" version="29.6.0">
+  <diagram name="Financial Architecture" id="to5kyLpOyE7SMSTZW0jv">
+    <mxGraphModel dx="1973" dy="1129" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;" value="Internet" vertex="1">
+          <mxGeometry height="60" width="140" x="900" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" value="Edge Firewall" vertex="1">
+          <mxGeometry height="60" width="180" x="880" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;" value="IDS / IPS" vertex="1">
+          <mxGeometry height="60" width="180" x="880" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-4" parent="1" style="swimlane;fillColor=#d5e8d4;" value="DMZ Network" vertex="1">
+          <mxGeometry height="200" width="800" x="600" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-5" parent="y0Wxvvn5jmMXmCShQAtN-4" style="rounded=1;whiteSpace=wrap;html=1;" value="Keepalived VIP" vertex="1">
+          <mxGeometry height="60" width="200" x="300" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-6" parent="y0Wxvvn5jmMXmCShQAtN-4" style="rounded=1;whiteSpace=wrap;html=1;" value="Nginx LB1" vertex="1">
+          <mxGeometry height="60" width="200" x="100" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-7" parent="y0Wxvvn5jmMXmCShQAtN-4" style="rounded=1;whiteSpace=wrap;html=1;" value="Nginx LB2" vertex="1">
+          <mxGeometry height="60" width="200" x="500" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-8" parent="1" style="swimlane;fillColor=#fff2cc;" value="Application Network" vertex="1">
+          <mxGeometry height="300" width="1200" x="400" y="550" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-9" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;fillColor=#f8cecc;" value="Internal Firewall" vertex="1">
+          <mxGeometry height="60" width="250" x="450" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-10" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;" value="Internal Load Balancer" vertex="1">
+          <mxGeometry height="60" width="250" x="450" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-11" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;" value="App Server 1" vertex="1">
+          <mxGeometry height="60" width="200" x="200" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-12" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;" value="App Server 2" vertex="1">
+          <mxGeometry height="60" width="200" x="450" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-13" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;" value="App Server 3" vertex="1">
+          <mxGeometry height="60" width="200" x="700" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-14" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;fillColor=#e1d5e7;" value="Kafka Cluster (3 Brokers)" vertex="1">
+          <mxGeometry height="60" width="250" x="950" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-15" parent="y0Wxvvn5jmMXmCShQAtN-8" style="rounded=1;fillColor=#e1d5e7;" value="Redis Cluster (3M + 3R)" vertex="1">
+          <mxGeometry height="60" width="250" x="950" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-16" parent="1" style="swimlane;fillColor=#dae8fc;" value="Data Network" vertex="1">
+          <mxGeometry height="250" width="800" x="700" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-17" parent="y0Wxvvn5jmMXmCShQAtN-16" style="rounded=1;" value="PostgreSQL Primary + Replicas" vertex="1">
+          <mxGeometry height="60" width="300" x="200" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="y0Wxvvn5jmMXmCShQAtN-18" parent="y0Wxvvn5jmMXmCShQAtN-16" style="rounded=1;" value="Backup Server + WAL Archive" vertex="1">
+          <mxGeometry height="60" width="300" x="550" y="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
