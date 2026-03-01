@@ -1,0 +1,33 @@
+flowchart TB
+
+subgraph DC1_PRIMARY
+    LB1[Nginx + Keepalived]
+    APP1
+    APP2
+    APP3
+    Kafka1
+    Kafka2
+    Kafka3
+    Redis1
+    Redis2
+    Redis3
+    PGPrimary
+end
+
+subgraph DC2_DR
+    KafkaDR
+    RedisDR
+    PGReplicaDR
+end
+
+APP1 --> Kafka1
+APP2 --> Kafka2
+APP3 --> Kafka3
+
+Kafka1 --> PGPrimary
+Kafka2 --> PGPrimary
+Kafka3 --> PGPrimary
+
+PGPrimary -->|Async| PGReplicaDR
+Kafka1 -->|MirrorMaker2| KafkaDR
+Redis1 -->|Replica| RedisDR

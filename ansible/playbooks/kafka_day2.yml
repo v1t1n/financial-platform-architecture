@@ -1,0 +1,46 @@
+---
+- name: Kafka Enterprise Day 2 Operations
+  hosts: kafka_cluster
+  become: yes
+  serial: 1
+
+  vars:
+    kafka_service: kafka
+    topic_name: financial-transactions
+    partitions: 6
+    replication_factor: 3
+
+  tasks:
+
+    - name: Ensure Kafka is running
+      systemd:
+        name: "{{ kafka_service }}"
+        state: started
+
+    - name: Create topic if not exists
+      command: >
+        /opt/kafka/bin/kafka-topics.sh
+        --create
+        --topic {{ topic_name }}
+        --bootstrap-server localhost:9092
+        --partitions {{ partitions }}
+        --replication-factor {{ replication_factor }}
+      ignore_errors: yes
+
+    - name: Validate ISR
+      command: >
+        /opt/kafka/bin/kafka-topics.sh
+        --describe
+        --topic {{ topic_name }}
+        --bootstrap-server localhost:9092
+      register: topic_status
+
+    - name: Fail if under replicated partitions
+      fail:
+        msg: "Under replicated partitions detected"
+      when: "'UnderReplicated' in topic_status.stdout"
+
+    - name: Rolling restart broker
+      systemd:
+        name: "{{ kafka_service }}"
+        state: restarted

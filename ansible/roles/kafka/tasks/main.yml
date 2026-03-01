@@ -1,0 +1,7 @@
+---
+- name: Check Kafka cluster health
+  command: /opt/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+  register: kafka_topics
+
+- debug:
+    var: kafka_topics.stdout
